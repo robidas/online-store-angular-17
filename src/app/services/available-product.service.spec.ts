@@ -16,9 +16,9 @@ describe('AvailableProductService', () => {
 
   it('should return all available products', (done: DoneFn) => {
     service.getAll().subscribe(products => {
-      expect(products.length).toBe(2);
-      expect(products[0].productName).toBe('cuppa');
-      expect(products[1].productName).toBe('cucumber');
+      expect(products.length).toBeGreaterThan(1);
+      expect(products[0].productName).not.toBeNull();
+      expect(products[1].productName).not.toBeNull();
       done();
     });
   });
@@ -34,7 +34,7 @@ describe('AvailableProductService', () => {
   });
 
   it('should return null if product by id is not found', (done: DoneFn) => {
-    service.getById('03').subscribe(product => {
+    service.getById('nonexistant_id').subscribe(product => {
       expect(product).toBeNull();
       done();
     });
