@@ -47,7 +47,7 @@ const AVAILABLE_PRODUCTS: AvailableProduct[] = [
     "productDetails": "A cup of tea and a bickie. A wonderfully soothing afternoon break.",
     "productImageSource": "https://www.example.com/photo/",
     "downloadDate": "2023-Oct-03",
-    "productImageFile": "src/assets/img/fancyacuppa_sm.jpg",
+    "productImageFile": "/assets/img/fancyacuppa_sm.jpg",
     "unitPrice": 39.99,
   },
   {
@@ -56,7 +56,7 @@ const AVAILABLE_PRODUCTS: AvailableProduct[] = [
     "productDetails": "Some people like to eat a cucumber, but you can use it for whatever you want.",
     "productImageSource": "https://www.example.com/photo/",
     "downloadDate": "2023-Nov-06",
-    "productImageFile": "src/assets/img/cucumbers_sm.jpg",
+    "productImageFile": "https://robidas.github.io/static-site/online-store/shoes_sm.jpg",
     "unitPrice": 9.71,
   },
 
