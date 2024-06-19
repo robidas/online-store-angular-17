@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.link-button {
+    display: inline-block;
+    width: 10rem; /* Adjust this value as needed */
+    padding: 0.625rem 1.25rem; /* Padding around the text */
+    margin: 0.3125rem; /* Space around each button */
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* White text */
+    background-color: #808080; /* Default button color is gray */
+    border: none; /* No border */
+    border-radius: 0.703125rem; /* Rounded corners */
+    text-align: center; /* Center the text */
+}

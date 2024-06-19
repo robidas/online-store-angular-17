@@ -1,0 +1,19 @@
+/* 
+ * File: header.component.css
+ * Description: Styles for the header component.
+ */
+
+/* Styles for navigation links */
+nav > a {
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+/* Change color on hover */
+nav > a:hover {
+    background-color: #0056b3; /* Darker shade of blue */
+}
+
+/* Active buttons are green */
+nav > a.active {
+    background-color: #28a745; /* Green */
+}
