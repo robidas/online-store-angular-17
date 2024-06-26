@@ -12,6 +12,7 @@ import { importProvidersFrom } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { chosenProductReducer } from './app/state/reducers/chosen-product.reducer';
+import { availableProductReducer } from './app/state/reducers/available-product.reducer';
 
 // Create an extended application configuration that includes the original
 // configuration and adds the necessary providers for NgRx Store and
@@ -39,12 +40,15 @@ const extendedAppConfig = {
       // Property names must match property names in the AppState interface, 
       // and property values must be names of reducer functions that define how
       // state updates are handled.
-      StoreModule.forRoot({ chosenProducts: chosenProductReducer }),
+      StoreModule.forRoot({
+        chosenProducts: chosenProductReducer,
+        availableProducts: availableProductReducer
+      }),
 
       // StoreDevtoolsModule.instrument() configures the Redux DevTools
       // integration with the NgRx store. 
       StoreDevtoolsModule.instrument({ 
-        
+
         // The maxAge parameter sets the maximum number of actions to be stored in 
         // the history (25 in this case), which helps to limit memory usage. 
         maxAge: 25, 
