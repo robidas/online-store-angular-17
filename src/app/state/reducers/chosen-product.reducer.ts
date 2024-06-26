@@ -1,11 +1,10 @@
 /**
- * chosen-product.reducer.ts
+ * chosenProductReducer
  * 
  * This file defines the reducer function for managing the state of chosen
  * products in the application. The reducer listens for specific actions and
  * updates the state accordingly.
  */
-
 import { createReducer, on } from '@ngrx/store';
 import { addChosenProduct, removeChosenProduct } from '../actions/chosen-product.actions';
 import { ChosenProduct } from '../../models/chosen-product.interface';
@@ -19,12 +18,15 @@ export const chosenProductReducer = createReducer(
 
   // Handle the addChosenProduct action
   on(addChosenProduct, (state, { chosenProduct }) => {
+
     // Check if the product already exists in the cart
     const foundProduct = state.find(p => p.id === chosenProduct.id);
     if (!foundProduct) {
+
       // Product does not exist in the cart, add it with quantity 1.
       return [...state, { ...chosenProduct, qty: 1 }];
     } else {
+
       // Product already exists in the cart, increment the quantity.
       return state.map(p => p.id === chosenProduct.id ? { ...p, qty: p.qty + 1 } : p);
     }
