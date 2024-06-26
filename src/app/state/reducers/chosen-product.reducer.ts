@@ -34,11 +34,13 @@ export const chosenProductReducer = createReducer(
 
   // Handle the removeChosenProduct action
   on(removeChosenProduct, (state, { productId }) => {
+
     // Check if the product exists in the cart
     const foundProduct = state.find(p => p.id === productId);
     if (!foundProduct) {
       return state;
     } else {
+        
       // Product exists in the cart, decrement the quantity or remove the product.
       return state
         .map(p => p.id === productId ? { ...p, qty: p.qty - 1 } : p)
