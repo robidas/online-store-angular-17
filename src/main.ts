@@ -45,17 +45,19 @@ const extendedAppConfig = {
         availableProducts: availableProductReducer
       }),
 
+      StoreDevtoolsModule.instrument()
+
       // StoreDevtoolsModule.instrument() configures the Redux DevTools
       // integration with the NgRx store. 
-      StoreDevtoolsModule.instrument({ 
+      // StoreDevtoolsModule.instrument({ 
 
-        // The maxAge parameter sets the maximum number of actions to be stored in 
-        // the history (25 in this case), which helps to limit memory usage. 
-        maxAge: 25, 
+      //   // The maxAge parameter sets the maximum number of actions to be stored in 
+      //   // the history (25 in this case), which helps to limit memory usage. 
+      //   maxAge: 25, 
 
-        // The logOnly parameter, when set to true, restricts DevTools to logging actions 
-        // without allowing state changes, ensuring a read-only view of the state transitions.
-        logOnly: true })
+      //   // The logOnly parameter, when set to true, restricts DevTools to logging actions 
+      //   // without allowing state changes, ensuring a read-only view of the state transitions.
+      //   logOnly: true })
     )
   ]
 };
