@@ -1,7 +1,15 @@
-<h2>Cart</h2>
-<input type="text" [(ngModel)]="testProductId" placeholder="Enter Product ID">
-<br />
-<input type="text" [(ngModel)]="testProductName" placeholder="Enter Product Name"> <!-- New input field for productName -->
-<br />
-<button (click)="addProduct()">Add Test Product</button>
-<button (click)="removeProduct()">Remove Test Product</button>
+<div>
+    <h2>Cart</h2>
+    <input type="text" [(ngModel)]="testProductId" placeholder="Enter Product ID">
+    <br />
+    <input type="text" [(ngModel)]="testProductName" placeholder="Enter Product Name">
+    <br />
+    <button (click)="addProduct()">Add Test Product</button>
+    <button (click)="removeProduct()">Remove Test Product</button>
+</div>
+
+<ul>
+    <li *ngFor="let product of chosenProducts$ | async">
+        {{ product.productName }} (ID: {{ product.id }}, Quantity: {{ product.qty }})
+    </li>
+</ul>
