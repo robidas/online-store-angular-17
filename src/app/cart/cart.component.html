@@ -1,3 +1,7 @@
-<p>cart works!</p>
-<!-- cart.component.html -->
+<h2>Cart</h2>
+<input type="text" [(ngModel)]="testProductId" placeholder="Enter Product ID">
+<br />
+<input type="text" [(ngModel)]="testProductName" placeholder="Enter Product Name"> <!-- New input field for productName -->
+<br />
 <button (click)="addProduct()">Add Test Product</button>
+<button (click)="removeProduct()">Remove Test Product</button>

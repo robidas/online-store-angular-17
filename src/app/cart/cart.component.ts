@@ -8,12 +8,16 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ChosenProduct } from '../models/chosen-product.interface';
-import { addChosenProduct } from '../state/actions/chosen-product.actions';
+import { addChosenProduct, removeChosenProduct } from '../state/actions/chosen-product.actions';
 import { AppState } from '../state/app.state';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
+  imports: [
+    FormsModule
+  ],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
@@ -37,4 +41,10 @@ export class CartComponent {
     // Dispatch the addChosenProduct action with the test product
     this.store.dispatch(addChosenProduct({ chosenProduct: testProduct }));
   }
+
+  removeProduct(): void {
+    if (!this.testProductId) return; // Guard clause to prevent removing undefined or empty ID
+    this.store.dispatch(removeChosenProduct({ productId: this.testProductId })); // Use testProductId directly
+  }
+  
 }
