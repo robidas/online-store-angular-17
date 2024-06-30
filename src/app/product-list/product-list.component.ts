@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AvailableProductService } from '../services/available-product.service';
-import { Observable } from 'rxjs';
-import { AvailableProduct } from '../models/available-product.interface';
+import { Observable, tap } from 'rxjs';
+import { AvailableProduct } from 'src/app/models/available-product.interface';
+import { selectAvailableProductsState } from 'src/app/state/selectors/available-product.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-product-list',
@@ -12,11 +13,16 @@ import { AvailableProduct } from '../models/available-product.interface';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products$!: Observable<AvailableProduct[]>;
 
-  constructor(private availableProductService: AvailableProductService) {}
+  // Holds the list of products
+  products$!: Observable<AvailableProduct[]>; // note the use of the definite assignment assertion operator (!)
+
+
+  constructor(private store: Store) {
+  }
 
   ngOnInit(): void {
-    this.products$ = this.availableProductService.getAll();
+    this.products$ = this.store.select(selectAvailableProductsState);
   }
+
 }

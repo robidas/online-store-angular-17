@@ -13,6 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { chosenProductReducer } from './app/state/reducers/chosen-product.reducer';
 import { availableProductReducer } from './app/state/reducers/available-product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AvailableProductEffects } from './app/state/effects/available-product.effects';
 
 // Create an extended application configuration that includes the original
 // configuration and adds the necessary providers for NgRx Store and
@@ -21,7 +23,7 @@ const extendedAppConfig = {
   ...appConfig,
   providers: [
     ...appConfig.providers,
-    
+
     // Importing NgRx StoreModule and StoreDevtoolsModule at the application
     // level ensures that the state management is properly configured. Since
     // standalone components do not support 'Module.forRoot()' style
@@ -44,6 +46,11 @@ const extendedAppConfig = {
         chosenProducts: chosenProductReducer,
         availableProducts: availableProductReducer
       }),
+
+      // Tell NgRx to start listening to actions and running the associated effects.
+      EffectsModule.forRoot([AvailableProductEffects]),
+
+
 
       StoreDevtoolsModule.instrument()
 
