@@ -18,28 +18,19 @@ export class AvailableProductService {
 
   constructor() { }
 
-  /**
-   * Get an available product by its id.
-   * 
-   * @param id - The id of the available product.
-   * @returns The available product with the specified id, or null if no available product has the specified id.
-   */
+  // Get an available product by its id.
   getById(id: string): Observable<AvailableProduct | null> {
     const availableProduct = this.availableProducts.find(ap => ap.id === id);
     return of(availableProduct ? availableProduct : null);
   }
 
-  /**
-   * Get all available products.
-   * 
-   * @returns An array of all available products.
-   */
+  // Get all available products.
   getAll(): Observable<AvailableProduct[]> {
     return of(this.availableProducts);
   }
 }
 
-// Array of available product data
+// Array of available product data. Mock data. Later on, this data will be retrieved from a server.
 const AVAILABLE_PRODUCTS: AvailableProduct[] = [
   {
     "id": "01",
