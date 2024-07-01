@@ -11,8 +11,16 @@
  * interface definition's property name. This property name is used in the StoreModule.forRoot() method.
  */
 
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { ChosenProduct } from 'src/app/models/chosen-product.interface';
 
 // Selector to get the chosenProducts slice of the AppState.
-export const selectChosenProductsState = createFeatureSelector<ChosenProduct[]>('chosenProducts');
+export const selectChosenProductsState =
+    createFeatureSelector<ChosenProduct[]>('chosenProducts');
+
+// Selector to get an chosen product by id.
+export const selectChosenProductById = (id: string) => createSelector(
+    createFeatureSelector<ChosenProduct[]>('chosenProducts'),
+    (availableProducts: ChosenProduct[]) =>
+        availableProducts.find(availableProduct => availableProduct.id === id)
+);
