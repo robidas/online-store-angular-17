@@ -4,7 +4,6 @@
  * This component represents the cart view of the application. It allows users
  * to view chosen products and interact with them.
  */
-
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ChosenProduct } from '../models/chosen-product.interface';
@@ -29,7 +28,9 @@ export class CartComponent implements OnInit {
   // Test product fields
   testProductId = '01';
   testProductName = 'Test Product';
-  chosenProducts$!: Observable<ChosenProduct[]>; // Observable to hold the chosen products
+
+  // Observable to hold the chosen products
+  chosenProducts$!: Observable<ChosenProduct[]>; 
 
 
   constructor(private store: Store<AppState>) {}
