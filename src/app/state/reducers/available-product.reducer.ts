@@ -20,7 +20,10 @@ export const initialState: AvailableProduct[] = [];
 export const availableProductReducer = createReducer(
   initialState,
 
-  // Handles the loadAvailableProducts action.
+  // Handles the loadAvailableProducts action. 
+  // Note: this is intended for async processing by available products effects.
+  // Here in the reducer, by not changing the current state, its just a placeholder.
+  // In future, we may use this to update a flag to indicate that the products are being loaded.
   on(loadAvailableProducts, state => {
     console.debug("availableProductReducer: state: ", state);
     return [...state];
