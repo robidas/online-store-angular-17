@@ -72,7 +72,7 @@ bootstrapApplication(AppComponent, extendedAppConfig);
 
 NgRx actions are configured in the NgRx Store module of the application. The actions are connected to effects and reducers, 
 which handle the side effects and state changes associated with these actions.  To accomplish this, the 
-extended application configuration includes the original configuration and adds the necessary providers for NgRx Store and 
+extended application configuration includes the original configuration and adds the necessary providers for NgRx Store, Effects, and 
 Store DevTools. 
 
 ```typescript
@@ -254,3 +254,6 @@ Unit testing is configured in `tsconfig.spec.json` and uses Karma/Jasmine for to
 
 
 
+## References
+
+- NgRx diagrams based on: [https://v8.ngrx.io/guide/store#diagram](https://v8.ngrx.io/guide/store#diagram)
