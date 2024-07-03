@@ -173,7 +173,7 @@ These actions are dispatched wherever chosen products need to be manged. This in
 
 
 
-#### Reducers
+### NgRx Reducers
 
 Reducers handle the state transformations based on the actions dispatched. The updated state is then consumed by various components through selectors.
 
@@ -200,7 +200,7 @@ The chosenProductReducer subscribes to these actions:
 to be removed.
 
 
-#### Selectors
+### NgRx Selectors
 
 Selectors are used to query the state. They are built using the NgRx createFeatureSelector function. "Feature" refers to the state slice that is queried. 
 The portion of the state, the state slice, is identified using the the AppState 
@@ -213,7 +213,7 @@ The portion of the state, the state slice, is identified using the the AppState
 | selectChosenProductsState    | chosenProducts     | Returns all avachosenilable products.     |
 | selectChosenProductById    | DchosenProductsata     | Returns an chosen product given its ID.     |
 
-#### Effects
+### NgRx Effects
 
 Effects handle side effects such as API calls. By subscribing to actions,  the NgRx effect middleware 
 listens for the a specific action, and performs the required asynchronous operations needed to satisfy the action.
