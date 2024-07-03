@@ -1,5 +1,4 @@
-<p>product-list works!</p>
-
+<h1>Product List</h1>
 <div *ngFor="let product of products$ | async" class="product">
   <h2>{{ product.productName }}</h2>
   <p>{{ product.unitPrice | currency }}</p>
