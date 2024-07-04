@@ -1,4 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --app-name-header: darkblue;
+    --app-name-footer: #007bff;
+    --body-background: rgb(234, 234, 234);
+    --site-background:rgb(220, 220, 220);
+    --border-color: darkgray;
+    --header-background: cornsilk;
+    --main-background: cornsilk;
+    --footer-background:rgb(242, 242, 242);
+    --error-text-color: red;
+    --default-text-color: black;
+    --nav-hover-background: lightcyan;
+    --nav-active-text-color: brown;
+    --nav-current-text-color: darkgreen;
+    --product-summary-border: darkolivegreen;
+    --nav-button-selected: azure;
+    --nav-button-unselected: aliceblue;
+    --button-background: lightblue;
+    --product-summary-background: aliceblue;
+  }
+  
+.app-section {
+    padding: 0.5rem 1.0rem 0.5rem 1.0rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    border: solid var(--border-color);
+    border-width: thin;
+  }
+
 .link-button {
     display: inline-block;
     width: 10rem; /* Adjust this value as needed */
@@ -11,3 +40,4 @@
     border-radius: 0.703125rem; /* Rounded corners */
     text-align: center; /* Center the text */
 }
+
