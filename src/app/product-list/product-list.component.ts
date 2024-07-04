@@ -13,11 +13,12 @@ import { Observable } from 'rxjs';
 import { AvailableProduct } from 'src/app/models/available-product.interface';
 import { selectAvailableProductsState } from 'src/app/state/selectors/available-product.selectors';
 import { Store } from '@ngrx/store';
+import { ProductSummaryComponent } from '../product-summary/product-summary.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true, // Enables standalone usage, no NgModule required
-  imports: [CommonModule],  
+  imports: [CommonModule, ProductSummaryComponent, ProductSummaryComponent],  
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
