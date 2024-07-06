@@ -1,22 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --app-name-header: darkblue;
-    --app-name-footer: #007bff;
-    --body-background: rgb(234, 234, 234);
-    --site-background:rgb(220, 220, 220);
     --border-color: darkgray;
-    --header-background: cornsilk;
-    --main-background: cornsilk;
-    --footer-background:rgb(242, 242, 242);
-    --error-text-color: red;
-    --default-text-color: black;
-    --nav-hover-background: lightcyan;
-    --nav-active-text-color: brown;
-    --nav-current-text-color: darkgreen;
-    --product-summary-border: darkolivegreen;
-    --nav-button-selected: azure;
-    --nav-button-unselected: aliceblue;
-    --button-background: lightblue;
+    --nav-green: #28a745;
+    --nav-blue: #0056b3;
+    --nav-text: #fff; /* White text */
+    --nav-unselected: #808080; /* Default nav button color is gray */
     --product-summary-background: aliceblue;
   }
   
@@ -34,8 +22,8 @@
     padding: 0.625rem 1.25rem; /* Padding around the text */
     margin: 0.3125rem; /* Space around each button */
     text-decoration: none; /* Remove underline from links */
-    color: #fff; /* White text */
-    background-color: #808080; /* Default button color is gray */
+    color: var(--nav-text); 
+    background-color: var(--nav-unselected); 
     border: none; /* No border */
     border-radius: 0.703125rem; /* Rounded corners */
     text-align: center; /* Center the text */

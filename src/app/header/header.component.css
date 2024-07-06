@@ -10,10 +10,10 @@ nav > a {
 
 /* Change color on hover */
 nav > a:hover {
-    background-color: #0056b3; /* Darker shade of blue */
+    background-color: var(--nav-blue); 
 }
 
 /* Active buttons are green */
 nav > a.active {
-    background-color: #28a745; /* Green */
+    background-color: var(--nav-green); 
 }

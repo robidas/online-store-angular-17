@@ -1,15 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { AvailableProduct } from '../models/available-product.interface';
-
-// import statements
-
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-product-summary',
   standalone: true, // Enables standalone usage, no NgModule required
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './product-summary.component.html',
   styleUrls: ['./product-summary.component.css']
 })
