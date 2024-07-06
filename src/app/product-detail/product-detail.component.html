@@ -1,1 +1,8 @@
-<p>product-detail works!</p>
+<div *ngIf="product$ | async as product; else errorTemplate">
+  <p>Product ID: {{product.id}}</p>
+  <p>Product Name: {{product.productName}}</p>
+</div>
+
+<ng-template #errorTemplate>
+  <p>Error: Product not found.</p>
+</ng-template>

@@ -47,4 +47,11 @@ describe('AvailableProduct Selectors', () => {
   });
 
 
+  // This test verifies the behavior when selecting an available product that does not exist.
+  it('should return null when the product ID does not exist', () => {
+    const result = selectAvailableProductById('3').projector(initialState['availableProducts']);
+    expect(result).toBeNull();
+  });
+
+
 });

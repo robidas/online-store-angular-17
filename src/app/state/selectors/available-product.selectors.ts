@@ -22,5 +22,5 @@ export const selectAvailableProductsState =
 export const selectAvailableProductById = (id: string) => createSelector(
   createFeatureSelector<AvailableProduct[]>('availableProducts'),
   (availableProducts: AvailableProduct[]) => 
-    availableProducts.find(availableProduct => availableProduct.id === id)
+    availableProducts.find(availableProduct => availableProduct.id === id) || null
 );
