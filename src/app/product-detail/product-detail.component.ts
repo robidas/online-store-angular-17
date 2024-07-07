@@ -23,6 +23,8 @@ import { AvailableProduct } from 'src/app/models/available-product.interface';
 import { selectAvailableProductById } from 'src/app/state/selectors/available-product.selectors';
 import { AppState } from 'src/app/state/app.state';
 import { CommonModule } from '@angular/common';
+import { ChosenProduct } from '../models/chosen-product.interface';
+import { addChosenProduct } from '../state/actions/chosen-product.actions';
 
 @Component({
   selector: 'app-product-detail',
@@ -51,5 +53,33 @@ export class ProductDetailComponent implements OnInit {
     const productId = this.route.snapshot.params['id'];
     this.product$ = this.store.select(selectAvailableProductById(productId));
   }
+
+  addProduct() {
+    this.product$.subscribe(product => {
+      if (product) {
+        const { id, productName, productDetails, unitPrice } = product;
+
+        // Now you can use the destructured properties
+        // For example, to dispatch an action with these properties
+        const newProduct: ChosenProduct = {
+          id,
+          productName,
+          productDetails,
+          unitPrice,
+          qty: 0 // Assuming you want to initialize quantity as 0
+        };
+
+        // Dispatch the action or perform other logic here
+        // this.store.dispatch(addChosenProduct({ chosenProduct: testProduct }));
+
+        // Dispatch the addChosenProduct action with the test product
+        this.store.dispatch(addChosenProduct({ chosenProduct: newProduct }));
+
+      }
+    });
+  }
+
+
+
 
 }
