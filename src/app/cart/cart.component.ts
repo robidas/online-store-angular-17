@@ -58,5 +58,11 @@ export class CartComponent implements OnInit {
     if (!this.testProductId) return; // Guard clause to prevent removing undefined or empty ID
     this.store.dispatch(removeChosenProduct({ productId: this.testProductId })); // Use testProductId directly
   }
+
+  showAlert(message: string): void {
+    window.alert(message);
+  }
+
+  
   
 }

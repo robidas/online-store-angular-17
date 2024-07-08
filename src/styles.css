@@ -21,3 +21,19 @@
     text-align: center; /* Center the text */
 }
 
+.full-width-table {
+    width: 100%;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.number-right {
+    text-align: right;
+}
+
