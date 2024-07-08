@@ -64,7 +64,6 @@ describe('ProductDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // Triggers change detection to simulate the component's lifecycle events, like ngOnInit.
   it('should select the product based on route id parameter on ngOnInit', () => {
     let store: MockStore;
 

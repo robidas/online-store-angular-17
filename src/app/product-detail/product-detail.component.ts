@@ -12,8 +12,13 @@
  * 
  * The use of CommonModule allows the component to utilize common Angular
  * directives in its template, enhancing its functionality and presentation.
- * The component is marked as standalone, indicating it can be used independently
- * without requiring an Angular module.
+ * Following the overall pattern for this app, The component is marked as 
+ * standalone, indicating it can be used independently without requiring an 
+ * Angular module.
+ * 
+ * This component is an essential part of the product browsing experience, 
+ * allowing users to learn more about a product before making a purchase 
+ * decision.
  */
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
