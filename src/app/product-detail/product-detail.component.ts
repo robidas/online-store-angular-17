@@ -15,14 +15,15 @@
  * The component is marked as standalone, indicating it can be used independently
  * without requiring an Angular module.
  */
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
 import { AvailableProduct } from 'src/app/models/available-product.interface';
 import { selectAvailableProductById } from 'src/app/state/selectors/available-product.selectors';
 import { AppState } from 'src/app/state/app.state';
-import { CommonModule } from '@angular/common';
 import { ChosenProduct } from '../models/chosen-product.interface';
 import { addChosenProduct } from '../state/actions/chosen-product.actions';
 
@@ -45,6 +46,9 @@ export class ProductDetailComponent implements OnInit {
     // injected to access the route parameters, specifically the 'id' of the product
     private route: ActivatedRoute,
 
+    // router is needed to redirect back to product list after product is added to cart
+    private router: Router,
+
     // injected to interact with the NgRx Store for state management
     private store: Store<AppState>) { }
 
@@ -54,6 +58,7 @@ export class ProductDetailComponent implements OnInit {
     this.product$ = this.store.select(selectAvailableProductById(productId));
   }
 
+  // This method is called when the user clicks the "Buy" button.
   addProduct() {
     this.product$.subscribe(product => {
       if (product) {
@@ -69,14 +74,15 @@ export class ProductDetailComponent implements OnInit {
           qty: 0 // Assuming you want to initialize quantity as 0
         };
 
-        // Dispatch the action or perform other logic here
-        // this.store.dispatch(addChosenProduct({ chosenProduct: testProduct }));
-
         // Dispatch the addChosenProduct action with the test product
         this.store.dispatch(addChosenProduct({ chosenProduct: newProduct }));
 
+        // Go back to the stuff page so the user can't accidentally click the buy button more than once.
+        // This is a variation on the PRG (Post Redirect Get) design pattern.
+        this.router.navigate(['/stuff']);
       }
     });
+    
   }
 
 
