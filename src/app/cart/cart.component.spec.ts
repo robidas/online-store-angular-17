@@ -106,4 +106,11 @@ describe('CartComponent', () => {
     expect(store.dispatch).not.toHaveBeenCalled();
   });
 
+  it('should call window.alert with the correct message', () => {
+    const testMessage = 'Test Alert Message';
+    spyOn(window, 'alert');
+    component.showAlert(testMessage);
+    expect(window.alert).toHaveBeenCalledWith(testMessage);
+  });
+
 });
