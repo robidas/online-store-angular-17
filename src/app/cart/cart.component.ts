@@ -13,13 +13,15 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { selectChosenProductsState } from '../state/selectors/chosen-product.selectors';
 import { CommonModule } from '@angular/common';
+import { TotalsComponent } from '../totals/totals.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    TotalsComponent
   ],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
