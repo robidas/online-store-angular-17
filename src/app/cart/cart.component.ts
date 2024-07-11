@@ -32,27 +32,26 @@ export class CartComponent implements OnInit {
   testProductName = 'Test Product';
 
   // Observable to hold the chosen products
-  chosenProducts$!: Observable<ChosenProduct[]>; 
+  chosenProducts$!: Observable<ChosenProduct[]>;
 
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.chosenProducts$ = this.store.select(selectChosenProductsState);
   }
 
-  // Function to add a test product to the state
-  addProduct() {
-    const testProduct: ChosenProduct = {
-      id: this.testProductId,
-      productName: this.testProductName,
-      productDetails: 'Some details for test purposes',
-      unitPrice: 100.0,
+  // Function to add a product to the state
+  addProduct(id: string, productName: string, unitPrice: number) {
+    const addedProduct: ChosenProduct = {
+      id: id,
+      productName: productName,
+      unitPrice: unitPrice,
       qty: 0
     };
 
     // Dispatch the addChosenProduct action with the test product
-    this.store.dispatch(addChosenProduct({ chosenProduct: testProduct }));
+    this.store.dispatch(addChosenProduct({ chosenProduct: addedProduct }));
   }
 
   // Function to remove a test chosen product from state.
@@ -65,6 +64,6 @@ export class CartComponent implements OnInit {
     window.alert(message);
   }
 
-  
-  
+
+
 }

@@ -74,7 +74,6 @@ export class ProductDetailComponent implements OnInit {
         const newProduct: ChosenProduct = {
           id,
           productName,
-          productDetails,
           unitPrice,
           qty: 0 // Assuming you want to initialize quantity as 0
         };

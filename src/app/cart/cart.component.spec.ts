@@ -50,35 +50,31 @@ describe('CartComponent', () => {
 
   // Ensure addChosenProduct action is dispatched when addProduct is called
   it('should dispatch addChosenProduct action when addProduct is called', () => {
+
     // Arrange: create a test product and spy on the store.dispatch method
-    const testProduct: ChosenProduct = {
-      id: '01',
-      productName: 'Test Product',
-      productDetails: 'Some details for test purposes',
-      unitPrice: 100.00,
-      qty: 0
+  const mockId = 'testId';
+    const mockProductName = 'testProductName';
+    const mockUnitPrice = 100;
+    const expectedPayload = {
+      chosenProduct: {
+        id: mockId,
+        productName: mockProductName,
+        unitPrice: mockUnitPrice,
+        qty: 0 
+      }
     };
+  
+    // Ensure store.dispatch is spied on before the method call
     spyOn(store, 'dispatch');
-    
+  
     // Act: call addProduct method
-    component.addProduct();
-
-    // Assert: verify if the addChosenProduct action was dispatched
-    expect(store.dispatch).toHaveBeenCalledWith(addChosenProduct({ chosenProduct: testProduct }));
+    component.addProduct(mockId, mockProductName, mockUnitPrice);
+  
+    // Assert: verify if the addChosenProduct action was dispatched with the correct payload
+    expect(store.dispatch).toHaveBeenCalledWith(addChosenProduct(expectedPayload));
   });
 
-  // Ensure addProduct method is called when the button is clicked
-  it('should call addProduct method when button is clicked', () => {
-    // Arrange: spy on the addProduct method
-    spyOn(component, 'addProduct');
-    const button = fixture.debugElement.nativeElement.querySelector('button');
-    
-    // Act: simulate button click
-    button.click();
 
-    // Assert: verify if addProduct method was called
-    expect(component.addProduct).toHaveBeenCalled();
-  });
 
   // Ensure removeChosenProduct action is dispatched with testProductId when removeProduct is called and testProductId is defined
   it('should dispatch removeChosenProduct action with testProductId when removeProduct is called and testProductId is defined', () => {

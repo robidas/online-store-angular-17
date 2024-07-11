@@ -49,8 +49,18 @@ describe('TotalsComponent', () => {
   it('should calculate subtotal correctly considering reducer behavior', () => {
 
     // Mock data for chosen products to simulate adding products to the state.
-    const product1: ChosenProduct = { id: '01', productName: 'Product 1', productDetails: 'Details 1', unitPrice: 10.00, qty: 0 };
-    const product2: ChosenProduct = { id: '02', productName: 'Product 2', productDetails: 'Details 2', unitPrice: 20.00, qty: 0 };
+    const product1: ChosenProduct = { 
+      id: '01', 
+      productName: 'Product 1', 
+      unitPrice: 10.00, 
+      qty: 0 
+    };
+    const product2: ChosenProduct = { 
+      id: '02', 
+      productName: 'Product 2', 
+      unitPrice: 20.00, 
+      qty: 0 
+    };
 
     // Dispatch actions to add product1 three times to the state to simulate a
     // quantity of 3. This mimics the user's action of choosing a product multiple

@@ -19,7 +19,6 @@ describe('ChosenProduct Actions', () => {
     const testProduct: ChosenProduct = {
       id: '01',
       productName: 'Test Product',
-      productDetails: 'Some details for test purposes',
       unitPrice: 100.00,
       qty: 1
     };

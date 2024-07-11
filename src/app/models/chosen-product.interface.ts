@@ -11,9 +11,6 @@ export interface ChosenProduct {
     // The name of the chosen product.
     productName: string;
   
-    // The details of the chosen product.
-    productDetails: string;
-  
     // The unit price of the chosen product.
     unitPrice: number;
   

@@ -20,7 +20,6 @@ describe('chosenProductReducer', () => {
     const newProduct: ChosenProduct = {
       id: '01',
       productName: 'Test Product',
-      productDetails: 'Some details for test purposes',
       unitPrice: 100.00,
       qty: 0
     };
@@ -39,7 +38,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 1
       }
@@ -47,7 +45,6 @@ describe('chosenProductReducer', () => {
     const existingProduct: ChosenProduct = {
       id: '01',
       productName: 'Test Product',
-      productDetails: 'Some details for test purposes',
       unitPrice: 100.00,
       qty: 0
     };
@@ -66,14 +63,12 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'First Product',
-        productDetails: 'Details of first product',
         unitPrice: 50.00,
         qty: 1
       },
       {
         id: '02',
         productName: 'Second Product',
-        productDetails: 'Details of second product',
         unitPrice: 150.00,
         qty: 2
       }
@@ -81,7 +76,6 @@ describe('chosenProductReducer', () => {
     const newProduct: ChosenProduct = {
       id: '03',
       productName: 'New Product',
-      productDetails: 'Details of new product',
       unitPrice: 100.00,
       qty: 0
     };
@@ -103,14 +97,12 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'First Product',
-        productDetails: 'Details of first product',
         unitPrice: 50.00,
         qty: 1
       },
       {
         id: '02',
         productName: 'Second Product',
-        productDetails: 'Details of second product',
         unitPrice: 150.00,
         qty: 2
       }
@@ -118,7 +110,6 @@ describe('chosenProductReducer', () => {
     const existingProduct: ChosenProduct = {
       id: '02',
       productName: 'Second Product',
-      productDetails: 'Details of second product',
       unitPrice: 150.00,
       qty: 0
     };
@@ -159,7 +150,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 1
       }
@@ -167,7 +157,6 @@ describe('chosenProductReducer', () => {
     const chosenProduct: ChosenProduct = {
       id: '02',
       productName: 'Another Test Product',
-      productDetails: 'Different details',
       unitPrice: 150.00,
       qty: 0
     };
@@ -197,7 +186,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 2
       }
@@ -224,7 +212,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 1
       }
@@ -250,7 +237,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 1
       }
@@ -277,7 +263,6 @@ describe('chosenProductReducer', () => {
       {
         id: '01',
         productName: 'Test Product',
-        productDetails: 'Some details for test purposes',
         unitPrice: 100.00,
         qty: 1
       }
@@ -302,7 +287,12 @@ describe('chosenProductReducer', () => {
    */
   it('should decrement the quantity when product exists', () => {
     // Arrange
-    const existingProduct: ChosenProduct = { id: '01', productName: 'Test Product', productDetails: 'Details', unitPrice: 100, qty: 2 };
+    const existingProduct: ChosenProduct = { 
+      id: '01', 
+      productName: 'Test Product', 
+      unitPrice: 100, 
+      qty: 2 
+    };
     const initialStateWithProduct: ChosenProduct[] = [existingProduct];
 
     // Act
@@ -322,7 +312,12 @@ describe('chosenProductReducer', () => {
    */
   it('should remove the product when quantity goes to zero', () => {
     // Arrange
-    const existingProduct: ChosenProduct = { id: '01', productName: 'Test Product', productDetails: 'Details', unitPrice: 100, qty: 1 };
+    const existingProduct: ChosenProduct = { 
+      id: '01', 
+      productName: 'Test Product', 
+      unitPrice: 100, 
+      qty: 1 
+    };
     const initialStateWithProduct: ChosenProduct[] = [existingProduct];
 
     // Act

@@ -16,14 +16,12 @@ describe('ChosenProductSelectors', () => {
     {
       id: '01',
       productName: 'Test Product',
-      productDetails: 'Some details for test purposes',
       unitPrice: 100.00,
       qty: 1
     },
     {
       id: '02',
       productName: 'Another Test Product',
-      productDetails: 'Different details',
       unitPrice: 150.00,
       qty: 2
     }
