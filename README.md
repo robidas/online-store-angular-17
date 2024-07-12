@@ -195,7 +195,7 @@ which is also subscribed to the same action. The reducer does nothing at the mom
 ##### chosenProductReducer
 The chosenProductReducer subscribes to these actions: 
 
-- addChosenProduct, dispatched whenever the user wants to add a product to the shopping cart. This action's payload is the product data to be added.
+- addToCart, dispatched whenever the user wants to add a product to the shopping cart. This action's payload is the product data to be added.
 - removeChosenProduct, dispatched whenever the user wants to remove a product from the shopping cart. This action's payload is the ID of the product 
 to be removed.
 

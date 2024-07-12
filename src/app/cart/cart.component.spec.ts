@@ -9,9 +9,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartComponent } from './cart.component';
 import { provideStore } from '@ngrx/store';
 import { chosenProductReducer } from '../state/reducers/chosen-product.reducer';
-import { ChosenProduct } from '../models/chosen-product.interface';
 import { Store } from '@ngrx/store';
-import { addChosenProduct, removeChosenProduct } from '../state/actions/chosen-product.actions';
+import { addToCart, removeChosenProduct } from '../state/actions/chosen-product.actions';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -48,20 +47,17 @@ describe('CartComponent', () => {
     expect(component.testProductName).toBe('Test Product');
   });
 
-  // Ensure addChosenProduct action is dispatched when addProduct is called
-  it('should dispatch addChosenProduct action when addProduct is called', () => {
+  // Ensure addToCart action is dispatched when addProduct is called
+  it('should dispatch AddToCart action when addProduct is called', () => {
 
     // Arrange: create a test product and spy on the store.dispatch method
   const mockId = 'testId';
     const mockProductName = 'testProductName';
     const mockUnitPrice = 100;
     const expectedPayload = {
-      chosenProduct: {
         id: mockId,
         productName: mockProductName,
-        unitPrice: mockUnitPrice,
-        qty: 0 
-      }
+        unitPrice: mockUnitPrice
     };
   
     // Ensure store.dispatch is spied on before the method call
@@ -70,8 +66,8 @@ describe('CartComponent', () => {
     // Act: call addProduct method
     component.addProduct(mockId, mockProductName, mockUnitPrice);
   
-    // Assert: verify if the addChosenProduct action was dispatched with the correct payload
-    expect(store.dispatch).toHaveBeenCalledWith(addChosenProduct(expectedPayload));
+    // Assert: verify if the addToCart action was dispatched with the correct payload
+    expect(store.dispatch).toHaveBeenCalledWith(addToCart(expectedPayload));
   });
 
 

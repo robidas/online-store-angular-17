@@ -8,7 +8,7 @@
  */
 
 import { chosenProductReducer } from './chosen-product.reducer';
-import { addChosenProduct, removeChosenProduct } from '../actions/chosen-product.actions';
+import { addToCart, removeChosenProduct } from '../actions/chosen-product.actions';
 import { ChosenProduct } from '../../models/chosen-product.interface';
 
 describe('chosenProductReducer', () => {
@@ -16,24 +16,28 @@ describe('chosenProductReducer', () => {
   // Test for adding a new product that does not exist in the state
   it('should add a new product if it does not exist in the state', () => {
 
+    // Arrange
     const initialState: ChosenProduct[] = [];
-    const newProduct: ChosenProduct = {
+    const action = addToCart({ 
       id: '01',
       productName: 'Test Product',
       unitPrice: 100.00,
-      qty: 0
-    };
-    const action = addChosenProduct({ chosenProduct: newProduct });
+    });
+
+    // Act
     const state = chosenProductReducer(initialState, action);
     
+    // Assert
     // Verifying the new product is added with qty = 1
     expect(state.length).toBe(1);
-    expect(state[0].id).toBe(newProduct.id);
+    expect(state[0].id).toBe('01');
     expect(state[0].qty).toBe(1);
   });
 
   // Test for increasing the quantity of an existing product in the state
   it('should increase the quantity of an existing product in the state', () => {
+
+    // Arrange
     const initialStateWithProduct: ChosenProduct[] = [
       {
         id: '01',
@@ -42,23 +46,26 @@ describe('chosenProductReducer', () => {
         qty: 1
       }
     ];
-    const existingProduct: ChosenProduct = {
+    const action = addToCart({ 
       id: '01',
       productName: 'Test Product',
       unitPrice: 100.00,
-      qty: 0
-    };
-    const action = addChosenProduct({ chosenProduct: existingProduct });
+    });
+
+    // Act
     const state = chosenProductReducer(initialStateWithProduct, action);
     
+    // Assert
     // Verifying the quantity is incremented by 1
     expect(state.length).toBe(1);
-    expect(state[0].id).toBe(existingProduct.id);
+    expect(state[0].id).toBe('01');
     expect(state[0].qty).toBe(2);
   });
 
   // Test for adding a new product when multiple products exist in the state
   it('should handle adding a new product when multiple products exist in the state', () => {
+
+    // Arrange
     const initialStateWithMultipleProducts: ChosenProduct[] = [
       {
         id: '01',
@@ -79,20 +86,39 @@ describe('chosenProductReducer', () => {
       unitPrice: 100.00,
       qty: 0
     };
-    const action = addChosenProduct({ chosenProduct: newProduct });
+
+    console.debug('unit test, initialStateWithMultipleProducts:', initialStateWithMultipleProducts);
+    console.debug('unit test, existingProduct:', newProduct);
+    
+    const action = addToCart({ 
+      id: newProduct.id, 
+      productName: newProduct.productName, 
+      unitPrice: newProduct.unitPrice 
+    });
+
+    // Act
     const state = chosenProductReducer(initialStateWithMultipleProducts, action);
     
-    // Verifying the new product is added with qty = 1
+    console.debug('unit test, state from chosenProductReducer:', state);
+    
+    // Assert
     expect(state.length).toBe(3);
     const addedProduct = state.find(p => p.id === newProduct.id);
     expect(addedProduct).toBeDefined();
+
+    console.debug('unit test, updatedProduct:',addedProduct);
+
     if (addedProduct) {
+
+      // Verifying the new product is added with qty = 1
       expect(addedProduct.qty).toBe(1);
     }
   });
 
   // Test for incrementing the quantity of an existing product among multiple products in the state
   it('should handle incrementing the quantity of an existing product among multiple products in the state', () => {
+
+    // Arrange
     const initialStateWithMultipleProducts: ChosenProduct[] = [
       {
         id: '01',
@@ -113,14 +139,23 @@ describe('chosenProductReducer', () => {
       unitPrice: 150.00,
       qty: 0
     };
-    const action = addChosenProduct({ chosenProduct: existingProduct });
+    const action = addToCart({ 
+      id: existingProduct.id, 
+      productName: existingProduct.productName, 
+      unitPrice: existingProduct.unitPrice 
+    });
+
+    // Act
     const state = chosenProductReducer(initialStateWithMultipleProducts, action);
-    
-    // Verifying the quantity is incremented by 1
+
+    // Assert
+
     expect(state.length).toBe(2);
     const updatedProduct = state.find(p => p.id === existingProduct.id);
     expect(updatedProduct).toBeDefined();
     if (updatedProduct) {
+
+      // Verifying the quantity is incremented by 1
       expect(updatedProduct.qty).toBe(3);
     }
   });
@@ -137,14 +172,14 @@ describe('chosenProductReducer', () => {
   });
 
   /**
-   * This test verifies that when addChosenProduct action is dispatched with
+   * This test verifies that when addToCart action is dispatched with
    * a ChosenProduct object that has an ID not present in the initial state,
    * the reducer correctly adds the new product to the state array. It checks
    * that the state length increases by one, the existing product remains
    * unchanged, the new product with the specified ID is added with a quantity
    * of 1, and other properties are correctly initialized from the action payload.
    */
-  it('should add a new product when addChosenProduct is dispatched with a non-existing product ID', () => {
+  it('should add a new product when addToCart is dispatched with a non-existing product ID', () => {
     // Arrange
     const initialStateWithProduct: ChosenProduct[] = [
       {
@@ -162,7 +197,11 @@ describe('chosenProductReducer', () => {
     };
 
     // Act
-    const action = addChosenProduct({ chosenProduct });
+    const action = addToCart({ 
+      id:chosenProduct.id, 
+      productName:chosenProduct.productName, 
+      unitPrice:chosenProduct.unitPrice 
+    });
     const state = chosenProductReducer(initialStateWithProduct, action);
 
     // Assert

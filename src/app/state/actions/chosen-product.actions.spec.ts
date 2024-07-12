@@ -8,29 +8,26 @@
  */
 
 // Explicitly importing each action creator
-import { addChosenProduct, removeChosenProduct } from './chosen-product.actions';
-import { ChosenProduct } from '../../models/chosen-product.interface';
+import { addToCart, removeChosenProduct } from './chosen-product.actions';
 
 describe('ChosenProduct Actions', () => {
   // Testing the action creators for adding and removing chosen products
   
-  it('addChosenProduct should create an action to add a chosen product', () => {
+  it('addToCart should create an action to add a chosen product', () => {
     // Define a test product to add
-    const testProduct: ChosenProduct = {
+    const testProduct = {
       id: '01',
       productName: 'Test Product',
       unitPrice: 100.00,
-      qty: 1
     };
 
     // Create an action with the test product
-    const action = addChosenProduct({ chosenProduct: testProduct });
+    const action = addToCart(testProduct);
 
     // Assert that the created action has the correct structure and content
     expect({ ...action }).toEqual({
-      type: '[Chosen Products] Add Chosen Product',
-      chosenProduct: testProduct
-    });
+      type: '[Chosen Products] Add To Cart',
+      ...testProduct});
   });
 
   it('removeChosenProduct should create an action to remove a chosen product by id', () => {

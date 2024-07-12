@@ -29,8 +29,7 @@ import { Observable } from 'rxjs';
 import { AvailableProduct } from 'src/app/models/available-product.interface';
 import { selectAvailableProductById } from 'src/app/state/selectors/available-product.selectors';
 import { AppState } from 'src/app/state/app.state';
-import { ChosenProduct } from '../models/chosen-product.interface';
-import { addChosenProduct } from '../state/actions/chosen-product.actions';
+import { addToCart } from '../state/actions/chosen-product.actions';
 
 @Component({
   selector: 'app-product-detail',
@@ -67,19 +66,10 @@ export class ProductDetailComponent implements OnInit {
   addProduct() {
     this.product$.subscribe(product => {
       if (product) {
-        const { id, productName, productDetails, unitPrice } = product;
+        const { id, productName, unitPrice } = product;
 
-        // Now you can use the destructured properties
-        // For example, to dispatch an action with these properties
-        const newProduct: ChosenProduct = {
-          id,
-          productName,
-          unitPrice,
-          qty: 0 // Assuming you want to initialize quantity as 0
-        };
-
-        // Dispatch the addChosenProduct action with the test product
-        this.store.dispatch(addChosenProduct({ chosenProduct: newProduct }));
+        // Dispatch the addToCart action with the desctructured properties
+        this.store.dispatch(addToCart({ id, productName, unitPrice}));
 
         // Go back to the stuff page so the user can't accidentally click the buy button more than once.
         // This is a variation on the PRG (Post Redirect Get) design pattern.

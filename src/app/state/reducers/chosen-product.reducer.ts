@@ -9,7 +9,7 @@
  * The initial implementation used map and filter for updating the state, which led to coverage issues as some branches within the map function were not fully tested. We refactored the code to use a procedural approach with forEach loops, allowing us to explicitly handle each product and ensure all branches were covered. This change ensured that all branches within the reducer functions are tested, leading to 100% code coverage as verified by Karma.
  */
 import { createReducer, on } from '@ngrx/store';
-import { addChosenProduct, removeChosenProduct } from '../actions/chosen-product.actions';
+import { addToCart, removeChosenProduct } from '../actions/chosen-product.actions';
 import { ChosenProduct } from '../../models/chosen-product.interface';
 
 // Initial state for chosen products, which is an empty array.
@@ -19,28 +19,23 @@ const initialState: ChosenProduct[] = [];
 export const chosenProductReducer = createReducer(
   initialState,
 
-  // Handle the addChosenProduct action
-  on(addChosenProduct, (state, { chosenProduct }) => {
+  // Handle the addToCart action
+  on(addToCart, (state, { id, productName, unitPrice }) => {
+
+console.debug('chosenProductReducer addToCart, action payload: ', { id, productName, unitPrice });
+
 
     // Check if the product already exists in the cart
-    const foundProduct = state.find(p => p.id === chosenProduct.id);
-
+    const foundProduct = state.find(p => p.id === id);
     if (!foundProduct) {
-      console.debug("not found");
-
       // Product does not exist in the cart, add it with quantity 1.
-      return [...state, { ...chosenProduct, qty: 1 }];
+      return [...state, { id, productName, unitPrice, qty: 1 }];
     } else {
-      console.debug("found: ", foundProduct);
-
       // Product already exists in the cart, increment the quantity.
-      // The original approach using map caused issues with code coverage,
-      // so we replaced it with a more explicit iteration using forEach.
-      // This ensures all branches are covered.
       let returnState: ChosenProduct[] = [];
       state.forEach(p => {
         let product: ChosenProduct = { ...p };
-        if (product.id === chosenProduct.id) {
+        if (product.id === id) {
           // Increment the quantity of the existing product
           product.qty = (product.qty ?? 0) + 1;
         }

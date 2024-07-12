@@ -7,7 +7,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ChosenProduct } from '../models/chosen-product.interface';
-import { addChosenProduct, removeChosenProduct } from '../state/actions/chosen-product.actions';
+import { addToCart, removeChosenProduct } from '../state/actions/chosen-product.actions';
 import { AppState } from '../state/app.state';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -43,15 +43,9 @@ export class CartComponent implements OnInit {
 
   // Function to add a product to the state
   addProduct(id: string, productName: string, unitPrice: number) {
-    const addedProduct: ChosenProduct = {
-      id: id,
-      productName: productName,
-      unitPrice: unitPrice,
-      qty: 0
-    };
 
-    // Dispatch the addChosenProduct action with the test product
-    this.store.dispatch(addChosenProduct({ chosenProduct: addedProduct }));
+    // Dispatch the addToCart action with the test product
+    this.store.dispatch(addToCart({ id, productName, unitPrice}));
   }
 
   // Function to remove a test chosen product from state.
