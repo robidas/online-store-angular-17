@@ -42,7 +42,7 @@ export const chosenProductReducer = createReducer(
         let product: ChosenProduct = { ...p };
         if (product.id === chosenProduct.id) {
           // Increment the quantity of the existing product
-          product.qty = product.qty + 1;
+          product.qty = (product.qty ?? 0) + 1;
         }
         returnState.push(product);
       });
@@ -69,10 +69,10 @@ export const chosenProductReducer = createReducer(
         let product: ChosenProduct = { ...p };
         if (product.id === productId) {
           // Decrement the quantity of the existing product
-          product.qty = product.qty - 1;
+          product.qty = (product.qty ?? 0) - 1;
         }
         // Only add the product to the return state if its quantity is greater than 0
-        if (product.qty > 0) {
+        if ((product.qty ?? 0) > 0) {
           returnState.push(product);
         }
       });

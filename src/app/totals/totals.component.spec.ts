@@ -7,89 +7,66 @@
  * utilities to simulate interactions with the NgRx store, ensuring that the
  * component behaves as expected when products are added or removed from the state.
  */
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { TotalsComponent } from './totals.component';
-import { provideStore, Store } from '@ngrx/store';
-import { chosenProductReducer } from '../state/reducers/chosen-product.reducer';
-import { ChosenProduct } from '../models/chosen-product.interface';
-import { addChosenProduct } from '../state/actions/chosen-product.actions';
 
 describe('TotalsComponent', () => {
-  let component: TotalsComponent;
-  let fixture: ComponentFixture<TotalsComponent>;
-  let store: Store;
+
+  // The mockStore variable is a mock version of the NgRx store used for testing
+  // purposes. It allows us to simulate state changes and interactions.
+  let mockStore: MockStore;
+
+  // The standaloneComponent variable represents an instance of the
+  // TotalsComponent, which is under test.
+  let standaloneComponent: TotalsComponent;
 
   beforeEach(async () => {
 
-    // Configures the testing module for TotalsComponent tests.
-    // This setup includes the NgRx Store module with reducers, allowing us to
-    // simulate state changes and interactions as they would occur in the
-    // application's runtime environment.    
+    // The TestBed configuration sets up the testing environment for the
+    // TotalsComponent. It provides a mock store to mimic the application's
+    // state management.
     await TestBed.configureTestingModule({
-      imports: [TotalsComponent],
       providers: [
-        provideStore({ chosenProducts: chosenProductReducer })
+        provideMockStore(), // Sets up the MockStore for tests.
+        TotalsComponent // Includes the component under test.
       ]
     })
-      .compileComponents();
+    .compileComponents();
 
-    // Initializes the component and store instances before each test.
-    // This ensures a clean state for every test case, preventing unintended
-    // side effects or state persistence between tests.
-    fixture = TestBed.createComponent(TotalsComponent);
-    component = fixture.componentInstance;
-    store = TestBed.inject(Store);
-    fixture.detectChanges();
+    // Injecting the mock store into the test environment and creating an
+    // instance of the TotalsComponent with it. This setup mimics the component's
+    // real environment as closely as possible.
+    mockStore = TestBed.inject(MockStore);
+    standaloneComponent = new TotalsComponent(mockStore as any);
   });
+  
+  it('should correctly calculate subtotal considering custom quantities', () => {
+    
+    // Directly setting the state in the mock store to predefined values. This
+    // simulates a specific application state for testing the component's
+    // behavior under these conditions.
+    mockStore.setState({
+      chosenProducts: [
+        { id: '01', productName: 'Product 1', unitPrice: 10.00, qty: 3 },
+        { id: '03', productName: 'Product 3', unitPrice: 30.00, qty: undefined }
+      ]
+    });
+    
+    // Initializing the component to trigger any setup logic, such as
+    // subscriptions to the store. This is crucial for the test to reflect the
+    // component's real behavior as closely as possible.
+    standaloneComponent.ngOnInit();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    // The expectedSubtotal variable represents the manually calculated subtotal
+    // based on the mock state provided. This serves as the expected result to
+    // validate the component's calculation logic.
+    const expectedSubtotal = 30; // Since Product 3's qty is treated as 0
+
+    // Asserting that the component's calculated subtotal matches the expected
+    // subtotal. This verifies that the component correctly calculates the
+    // subtotal based on the chosen products in the state, considering custom
+    // quantities.
+    expect(standaloneComponent.subtotal).toEqual(expectedSubtotal);
   });
-
-  it('should calculate subtotal correctly considering reducer behavior', () => {
-
-    // Mock data for chosen products to simulate adding products to the state.
-    const product1: ChosenProduct = { 
-      id: '01', 
-      productName: 'Product 1', 
-      unitPrice: 10.00, 
-      qty: 0 
-    };
-    const product2: ChosenProduct = { 
-      id: '02', 
-      productName: 'Product 2', 
-      unitPrice: 20.00, 
-      qty: 0 
-    };
-
-    // Dispatch actions to add product1 three times to the state to simulate a
-    // quantity of 3. This mimics the user's action of choosing a product multiple
-    // times in the application.
-    for (let i = 0; i < 3; i++) {
-      store.dispatch(addChosenProduct({ chosenProduct: product1 }));
-    }
-
-    // Similarly, dispatch actions to add product2 twice to the state to simulate
-    // a quantity of 2. This step further prepares our simulated application state
-    // for testing the component's subtotal calculation logic.
-    for (let i = 0; i < 2; i++) {
-      store.dispatch(addChosenProduct({ chosenProduct: product2 }));
-    }
-
-    // Trigger the ngOnInit lifecycle hook manually to initiate the calculation
-    // of subtotal. This is necessary because the component relies on ngOnInit
-    // to subscribe to the store and calculate totals based on the current state.
-    component.ngOnInit();
-
-    // Calculate the expected subtotal manually based on the mock data provided.
-    // This value will be used to verify that the component's calculation logic
-    // is functioning correctly.
-    const expectedSubtotal = (product1.unitPrice * 3) + (product2.unitPrice * 2);
-
-    // Assert that the component's subtotal matches the expected subtotal.
-    // This test verifies that the component correctly calculates the subtotal
-    // based on the chosen products in the state.
-    expect(component.subtotal).toEqual(expectedSubtotal);
-  });
-
 });

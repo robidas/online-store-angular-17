@@ -31,6 +31,7 @@ export class TotalsComponent implements OnInit {
 
   ngOnInit(): void {
     // Select the chosenProducts state slice from the store.
+    // Thia observable will emit the chosenProducts array whenever it changes.
     this.store.select(selectChosenProductsState)
       .pipe(
         // Use the map operator to transform the chosenProducts array.
@@ -38,8 +39,9 @@ export class TotalsComponent implements OnInit {
           // Calculate the subtotal by reducing the chosenProducts array,
           // multiplying each product's unitPrice by its quantity and
           // accumulating the results.
+          // Note: the reduce function used here has nothing to do with ngrx reducers.
           chosenProducts.reduce(
-            (acc, product) => acc + (product.unitPrice * product.qty), 0)
+            (acc, product) => acc + (product.unitPrice * (product.qty ?? 0)), 0)
         )
       )
       // Subscribe to the observable to receive the calculated subtotal.

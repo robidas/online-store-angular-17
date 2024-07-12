@@ -15,5 +15,5 @@ export interface ChosenProduct {
     unitPrice: number;
   
     // The quantity of the chosen product.
-    qty: number;
+    qty?: number;
   }
