@@ -1,12 +1,5 @@
-<div>
-    <h2>Cart</h2>
-    <input type="text" [(ngModel)]="testProductId" placeholder="Enter Product ID">
-    <br />
-    <input type="text" [(ngModel)]="testProductName" placeholder="Enter Product Name">
-    <br />
-</div>
-
-<table class="full-width-table">
+<h2>Cart</h2>
+<table id="stuff-table" class="full-width-table" [style.display]="isDataInIt ? 'table' : 'none'">
     <thead>
         <tr>
             <th class="text-left">your stuff</th>
@@ -19,8 +12,8 @@
         <tr *ngFor="let product of chosenProducts$ | async">
             <td class="text-left">{{ product.productName }}</td>
             <td class="text-right">
-                <button (click)="showAlert('Remove ' + product.productName)">Remove</button> /
-                <button (click)="showAlert('Add ' + product.productName)">Add</button>
+                <button (click)="removeProduct(product.id)">Remove</button> /
+                <button (click)="addProduct(product.id, product.productName, product.unitPrice)">Add</button>
             </td>
             <td class="number-right">{{ product.qty }}</td>
             <td class="number-right">{{ product.unitPrice * product.qty | currency }}</td>
