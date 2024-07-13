@@ -49,7 +49,7 @@ describe('TotalsComponent', () => {
     mockStore.setState({
       chosenProducts: [
         { id: '01', productName: 'Product 1', unitPrice: 10.00, qty: 3 },
-        { id: '03', productName: 'Product 3', unitPrice: 30.00, qty: undefined }
+        { id: '03', productName: 'Product 3', unitPrice: 30.00, qty: 2 }
       ]
     });
     
@@ -61,7 +61,7 @@ describe('TotalsComponent', () => {
     // The expectedSubtotal variable represents the manually calculated subtotal
     // based on the mock state provided. This serves as the expected result to
     // validate the component's calculation logic.
-    const expectedSubtotal = 30; // Since Product 3's qty is treated as 0
+    const expectedSubtotal = 90; // (10 * 3) + (30 * 2) = 90
 
     // Asserting that the component's calculated subtotal matches the expected
     // subtotal. This verifies that the component correctly calculates the

@@ -41,7 +41,7 @@ export class TotalsComponent implements OnInit {
           // accumulating the results.
           // Note: the reduce function used here has nothing to do with ngrx reducers.
           chosenProducts.reduce(
-            (acc, product) => acc + (product.unitPrice * (product.qty ?? 0)), 0)
+            (acc, product) => acc + (product.unitPrice * product.qty), 0)
         )
       )
       // Subscribe to the observable to receive the calculated subtotal.

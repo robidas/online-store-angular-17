@@ -23,7 +23,7 @@
                 <button (click)="showAlert('Add ' + product.productName)">Add</button>
             </td>
             <td class="number-right">{{ product.qty }}</td>
-            <td class="number-right">{{ product.unitPrice * (product.qty ?? 0) | currency }}</td>
+            <td class="number-right">{{ product.unitPrice * product.qty | currency }}</td>
         </tr>
     </tbody>
 </table>
