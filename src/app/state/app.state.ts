@@ -5,6 +5,7 @@
  */
 import { AvailableProduct } from '../models/available-product.interface';
 import { ChosenProduct } from '../models/chosen-product.interface';
+import { PaymentInfo } from '../models/payment-info.interface';
 
 // The AppState interface represents the entire state of the application.
 export interface AppState {
@@ -14,4 +15,7 @@ export interface AppState {
 
   // The available products in the application state.
   availableProducts: AvailableProduct[]; 
+
+  // The payment information in the application state.
+  paymentInfo: PaymentInfo;
 }
