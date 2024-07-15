@@ -6,7 +6,12 @@
  * updates the state accordingly.
  * 
  * Explanation of Code Coverage Issues and Resolution:
- * The initial implementation used map and filter for updating the state, which led to coverage issues as some branches within the map function were not fully tested. We refactored the code to use a procedural approach with forEach loops, allowing us to explicitly handle each product and ensure all branches were covered. This change ensured that all branches within the reducer functions are tested, leading to 100% code coverage as verified by Karma.
+ * The initial implementation used map and filter for updating the state, which 
+ * led to coverage issues as some branches within the map function were not fully tested. 
+ * We refactored the code to use a procedural approach with forEach loops, allowing us to 
+ * explicitly handle each product and ensure all branches were covered. This change ensured 
+ * that all branches within the reducer functions are tested, leading to 100% code coverage 
+ * as verified by Karma.
  */
 import { createReducer, on } from '@ngrx/store';
 import { addToCart, removeChosenProduct } from '../actions/chosen-product.actions';

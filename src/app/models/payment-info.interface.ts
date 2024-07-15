@@ -6,9 +6,9 @@
  */
 
 export interface PaymentInfo {
-  // The user's chosen method of payment, restricted to specific values.
-  paymentMethod: "credit card" | "pay pal" | "my pay";
+  // Allow null or specific string values for paymentMethod
+  paymentMethod: "credit card" | "pay pal" | "my pay" | null;
 
-  // The user's credit card expiration date.
-  cardExpiration: Date;
+  // Allow null or Date for cardExpiration
+  cardExpiration: Date | null;
 }
