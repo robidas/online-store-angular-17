@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { chosenProductReducer } from './app/state/reducers/chosen-product.reducer';
 import { availableProductReducer } from './app/state/reducers/available-product.reducer';
+import { paymentInfoReducer } from './app/state/reducers/payment-info.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AvailableProductEffects } from './app/state/effects/available-product.effects';
 
@@ -44,7 +45,8 @@ const extendedAppConfig = {
       // state updates are handled.
       StoreModule.forRoot({
         chosenProducts: chosenProductReducer,
-        availableProducts: availableProductReducer
+        availableProducts: availableProductReducer,
+        paymentInfo: paymentInfoReducer
       }),
 
       // Tell NgRx to start listening to actions and running the associated effects.
