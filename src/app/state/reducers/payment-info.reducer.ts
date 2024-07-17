@@ -4,8 +4,8 @@ import { updatePaymentMethod, updateCardExpiration } from '../actions/payment-in
 
 // Define the initial state based on the PaymentInfo interface
 const initialState: PaymentInfo = {
-  paymentMethod: null, // Assuming null as initial state, adjust as needed
-  cardExpiration: null // Assuming null as initial state, adjust as needed
+  paymentMethod: null, // Assuming null as initial state
+  cardExpiration: null // Assuming null as initial state
 };
 
 // Reducer function for payment information

@@ -6,6 +6,8 @@ import { map, Observable } from 'rxjs';
 import { updateCardExpiration, updatePaymentMethod } from '../state/actions/payment-info.actions';
 import { selectCardExpiration, selectPaymentMethod } from '../state/selectors/payment-info.selectors';
 import { CommonModule } from '@angular/common';
+import { selectCustomerAddress, selectCustomerName } from '../state/selectors/shipping-info.selectors';
+import { updateCustomerAddress, updateCustomerName } from '../state/actions/shipping-info.actions';
 
 @Component({
   selector: 'app-checkout',
@@ -17,7 +19,9 @@ import { CommonModule } from '@angular/common';
 export class CheckoutComponent implements OnInit {
   paymentMethod$!: Observable<"credit card" | "pay pal" | "my pay" | null>;
   cardExpiration$!: Observable<Date | null>;
-  cardExpirationString$!: Observable<string | null>; // New observable for the formatted date
+  cardExpirationString$!: Observable<string | null>;
+  customerName$!: Observable<string | null>;
+  customerAddress$!: Observable<string | null>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -34,6 +38,11 @@ export class CheckoutComponent implements OnInit {
         return returnValue;
       })
     );
+
+    // Use selectors to get the current shipping info state
+    this.customerName$ = this.store.select(selectCustomerName);
+    this.customerAddress$ = this.store.select(selectCustomerAddress);
+
   }
 
   // src\app\checkout\checkout.component.ts
@@ -53,6 +62,20 @@ export class CheckoutComponent implements OnInit {
   // Format the card expiration date
   formatDate(date: Date): string {
     return date.toISOString().split('T')[0]; // Simple conversion to 'YYYY-MM-DD'
+  }
+
+  // Dispatch an action when the customer name changes
+  onChangeCustomerName(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const newName = inputElement.value;
+    this.store.dispatch(updateCustomerName({ customerName: newName }));
+  }
+
+  // Dispatch an action when the customer address changes
+  onChangeCustomerAddress(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const newAddress = inputElement.value;
+    this.store.dispatch(updateCustomerAddress({ customerAddress: newAddress }));
   }
 
 

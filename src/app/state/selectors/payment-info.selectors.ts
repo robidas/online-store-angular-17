@@ -2,11 +2,9 @@
 /**
  * Payment Info Selectors
  * 
- * This file contains the selectors for the paymentInfo state slice. Selectors are
- * functions used to select pieces of state. This file specifically includes
- * selectors to access the payment information related state slices. 
+ * This file contains the selectors for the paymentInfo state slice.  
  * 
- * The property name paymentMethod is used to configure NGRX state in the 
+ * The property name paymentInfo is used to configure NGRX state in the 
  * StoreModule.forRoot() method, in the src/main.ts file. This property name is
  * used in the AppState interface definition, found in the src/app/state/app.state.ts
  */

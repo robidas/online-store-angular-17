@@ -25,6 +25,10 @@ const appInitialState: AppState = {
     paymentInfo: {
       paymentMethod: null,
       cardExpiration: null
+    },
+    shippingInfo: {
+      customerName: null,
+      customerAddress: null
     }
   };
 
