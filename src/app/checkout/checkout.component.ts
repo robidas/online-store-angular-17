@@ -26,7 +26,13 @@ export class CheckoutComponent implements OnInit {
     this.paymentMethod$ = this.store.select(selectPaymentMethod);
     this.cardExpiration$ = this.store.select(selectCardExpiration);
     this.cardExpirationString$ = this.cardExpiration$.pipe(
-      map(date => date ? this.formatDate(date) : null)
+      map(date => {
+        let returnValue: string | null = null;
+        if (date) {
+          returnValue = this.formatDate(date);
+        }
+        return returnValue;
+      })
     );
   }
 
@@ -48,6 +54,6 @@ export class CheckoutComponent implements OnInit {
   formatDate(date: Date): string {
     return date.toISOString().split('T')[0]; // Simple conversion to 'YYYY-MM-DD'
   }
- 
+
 
 }

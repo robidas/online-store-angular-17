@@ -2,7 +2,7 @@
  * Chosen Product Selectors
  * 
  * This file contains the selectors for the chosenProducts state slice. Selectors are
- * functions used to select, derive, and compose pieces of state. This file specifically includes
+ * functions used to select pieces of state. This file specifically includes
  * a selector to access the entire chosenProducts state slice. These selectors ensure a consistent and
  * optimized method of accessing state throughout the application, particularly for the chosenProducts
  * feature.
