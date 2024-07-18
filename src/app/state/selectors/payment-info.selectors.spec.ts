@@ -1,4 +1,3 @@
-
 /**
  * Payment Info Selectors Unit Tests
  * 
@@ -39,6 +38,7 @@ const appInitialState: AppState = {
   
   // Test for selecting the entire paymentInfo object
   it('should select the paymentInfo object', () => {
+
     // Directly invoke the selector with the initial AppState
     const result = selectPaymentInfo(appInitialState);
     // Expect the result to equal the paymentInfo object in the initial AppState
@@ -47,16 +47,20 @@ const appInitialState: AppState = {
 
   // Test for selecting the payment method
   it('should select the payment method', () => {
+
   // Use the .projector() method to directly invoke the selector with the initial state
   const result = selectPaymentMethod.projector(paymentInfoInitialState);
+
   // Expect the result to equal the payment method in the initial state
   expect(result).toEqual('credit card');
   });
 
   // Test for selecting the card expiration
   it('should select the card expiration', () => {
+
   // Use the .projector() method to directly invoke the selector with the initial state
   const result = selectCardExpiration.projector(paymentInfoInitialState);
+
   // Expect the result to equal the card expiration in the initial state
   expect(result).toEqual(new Date('2023-12-01'));
   });

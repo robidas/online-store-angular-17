@@ -6,6 +6,7 @@ import { updateCardExpiration, updatePaymentMethod } from '../state/actions/paym
 import { selectCardExpiration, selectPaymentMethod } from '../state/selectors/payment-info.selectors';
 import { MemoizedSelector } from '@ngrx/store';
 import { AppState } from '../state/app.state';
+import { updateCustomerAddress, updateCustomerName } from '../state/actions/shipping-info.actions';
 
 // Mock TotalsComponent to isolate the testing environment and remove dependencies.
 // Specifically, the TotalsComponent depends on the NgRx store, which is not needed for this test.
@@ -146,5 +147,48 @@ describe('CheckoutComponent', () => {
     // Assert: Verify the correct action is dispatched with the new payment method.
     expect(mockStore.dispatch).toHaveBeenCalledWith(updatePaymentMethod({ paymentMethod: 'credit card' }));
   });
+
+
+  it('should dispatch updateCustomerName action with the new customer name when onChangeCustomerName is called', () => {
+    // Arrange: Simulate an input element event with a new customer name value.
+    const testEvent = {
+      target: { value: 'John Doe' } // Assuming 'John Doe' is entered
+    } as unknown as Event;
+
+    // Initialize mockStore and standaloneComponent with mockStore injected
+    mockStore = TestBed.inject(MockStore);
+    standaloneComponent = new CheckoutComponent(mockStore as any);
+
+    // Spy on the store's dispatch method to verify it's called with the correct action and payload.
+    spyOn(mockStore, 'dispatch');
+
+    // Act: Call onChangeCustomerName with the simulated event.
+    standaloneComponent.onChangeCustomerName(testEvent);
+
+    // Assert: Verify the correct action is dispatched with the new customer name.
+    expect(mockStore.dispatch).toHaveBeenCalledWith(updateCustomerName({ customerName: 'John Doe' }));
+  });
+
+  it('should dispatch updateCustomerAddress action with the new customer address when onChangeCustomerAddress is called', () => {
+    // Arrange: Simulate an input element event with a new customer address value.
+    const testEvent = {
+      target: { value: '123 Main St' } // Assuming '123 Main St' is entered
+    } as unknown as Event;
+
+    // Initialize mockStore and standaloneComponent with mockStore injected
+    mockStore = TestBed.inject(MockStore);
+    standaloneComponent = new CheckoutComponent(mockStore as any);
+
+    // Spy on the store's dispatch method to verify it's called with the correct action and payload.
+    spyOn(mockStore, 'dispatch');
+
+    // Act: Call onChangeCustomerAddress with the simulated event.
+    standaloneComponent.onChangeCustomerAddress(testEvent);
+
+    // Assert: Verify the correct action is dispatched with the new customer address.
+    expect(mockStore.dispatch).toHaveBeenCalledWith(updateCustomerAddress({ customerAddress: '123 Main St' }));
+  });
+
+  
 
 });
