@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { CheckoutComponent } from './checkout.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { updateCardExpiration, updatePaymentMethod } from '../state/actions/payment-info.actions';
 import { selectCardExpiration, selectPaymentMethod } from '../state/selectors/payment-info.selectors';
-import { MemoizedSelector } from '@ngrx/store';
-import { AppState } from '../state/app.state';
 import { updateCustomerAddress, updateCustomerName } from '../state/actions/shipping-info.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../state/app.state';
 
 // Mock TotalsComponent to isolate the testing environment and remove dependencies.
 // Specifically, the TotalsComponent depends on the NgRx store, which is not needed for this test.
@@ -45,14 +45,13 @@ describe('CheckoutComponent', () => {
       })
       .compileComponents();
 
-
   });
 
   it('should initialize paymentMethod$ observable with the current payment method from store', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Mock selectors
     mockStore.overrideSelector(selectPaymentMethod, "credit card");
@@ -72,7 +71,7 @@ describe('CheckoutComponent', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Mock selectors
     mockStore.overrideSelector(selectCardExpiration, new Date('2023-12-31'));
@@ -89,13 +88,13 @@ describe('CheckoutComponent', () => {
 
   it('should create', () => {
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
     expect(standaloneComponent).toBeTruthy();
   });
 
   it('should format date correctly', () => {
     // Arrange: Create a new date for testing.
-    standaloneComponent = new CheckoutComponent(null as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     const testDate = new Date('2023-04-15T00:00:00Z'); // Use a fixed date for consistency.
     const expectedFormattedDate = '2023-04-15'; // Expected result in 'YYYY-MM-DD' format.
@@ -116,7 +115,7 @@ describe('CheckoutComponent', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore injected
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Spy on the store's dispatch method to verify it's called with the correct action and payload.
     spyOn(mockStore, 'dispatch');
@@ -136,7 +135,7 @@ describe('CheckoutComponent', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore injected
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Spy on the store's dispatch method to verify it's called with the correct action and payload.
     spyOn(mockStore, 'dispatch');
@@ -157,7 +156,7 @@ describe('CheckoutComponent', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore injected
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Spy on the store's dispatch method to verify it's called with the correct action and payload.
     spyOn(mockStore, 'dispatch');
@@ -177,7 +176,7 @@ describe('CheckoutComponent', () => {
 
     // Initialize mockStore and standaloneComponent with mockStore injected
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new CheckoutComponent(mockStore as any);
+    standaloneComponent = new CheckoutComponent(mockStore as Store<AppState>);
 
     // Spy on the store's dispatch method to verify it's called with the correct action and payload.
     spyOn(mockStore, 'dispatch');

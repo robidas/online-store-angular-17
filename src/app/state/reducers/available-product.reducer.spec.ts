@@ -8,6 +8,7 @@
 import { availableProductReducer, initialState } from './available-product.reducer';
 import { loadAvailableProducts, loadAvailableProductsSuccess, loadAvailableProductsFailure } from '../actions/available-product.actions';
 import { AvailableProduct } from '../../models/available-product.interface';
+import { Action } from '@ngrx/store';
 
 describe('AvailableProductReducer', () => {
 
@@ -19,7 +20,7 @@ describe('AvailableProductReducer', () => {
 
     // // Test the initial state
     it('should return the default state', () => {
-        const action = { type: 'NOOP' } as any; // Action that does not affect the state
+        const action = { type: 'NOOP' } as Action; // Action that does not affect the state
         const result = availableProductReducer(undefined, action);
         expect(result).toBe(initialState); // Expect the initial state to be returned
     });

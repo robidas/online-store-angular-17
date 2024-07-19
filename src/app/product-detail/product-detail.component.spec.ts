@@ -65,11 +65,8 @@ describe('ProductDetailComponent', () => {
   });
 
   it('should select the product based on route id parameter on ngOnInit', () => {
-    let store: MockStore;
-
     // Get the mock store instance
-    store = TestBed.inject(Store) as unknown as MockStore;
-
+    const store: MockStore = TestBed.inject(Store) as unknown as MockStore;
     const fixture = TestBed.createComponent(ProductDetailComponent);
 
     // Triggers change detection to simulate the component's lifecycle events, specifically ngOnInit.

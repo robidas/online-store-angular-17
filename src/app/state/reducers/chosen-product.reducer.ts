@@ -37,9 +37,9 @@ console.debug('chosenProductReducer addToCart, action payload: ', { id, productN
       return [...state, { id, productName, unitPrice, qty: 1 }];
     } else {
       // Product already exists in the cart, increment the quantity.
-      let returnState: ChosenProduct[] = [];
+      const returnState: ChosenProduct[] = [];
       state.forEach(p => {
-        let product: ChosenProduct = { ...p };
+        const product: ChosenProduct = { ...p };
         if (product.id === id) {
           // Increment the quantity of the existing product
           product.qty = product.qty + 1;
@@ -64,9 +64,9 @@ console.debug('chosenProductReducer addToCart, action payload: ', { id, productN
       // The original approach using map and filter caused issues with code coverage,
       // so we replaced it with a more explicit iteration using forEach.
       // This ensures all branches are covered.
-      let returnState: ChosenProduct[] = [];
+      const returnState: ChosenProduct[] = [];
       state.forEach(p => {
-        let product: ChosenProduct = { ...p };
+        const product: ChosenProduct = { ...p };
         if (product.id === productId) {
           // Decrement the quantity of the existing product
           product.qty = product.qty - 1;

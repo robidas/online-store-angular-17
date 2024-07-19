@@ -10,6 +10,8 @@
 import { TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { TotalsComponent } from './totals.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../state/app.state';
 
 describe('TotalsComponent', () => {
 
@@ -38,7 +40,7 @@ describe('TotalsComponent', () => {
     // instance of the TotalsComponent with it. This setup mimics the component's
     // real environment as closely as possible.
     mockStore = TestBed.inject(MockStore);
-    standaloneComponent = new TotalsComponent(mockStore as any);
+    standaloneComponent = new TotalsComponent(mockStore as Store<AppState>);
   });
   
   it('should correctly calculate subtotal considering custom quantities', () => {

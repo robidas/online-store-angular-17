@@ -16,7 +16,7 @@
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductListComponent } from './product-list.component';
-import { Store, provideStore } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 // This mock class is used to simulate the behavior of the NgRx Store within the test environment.
 // It includes a spy for the 'select' method to assert its calls and arguments.

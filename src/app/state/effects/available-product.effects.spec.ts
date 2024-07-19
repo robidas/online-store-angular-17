@@ -24,10 +24,11 @@ import { AvailableProductService } from '../../services/available-product.servic
 import { loadAvailableProducts, loadAvailableProductsSuccess, loadAvailableProductsFailure } from '../actions/available-product.actions';
 import { AvailableProduct } from '../../models/available-product.interface';
 import { provideMockStore } from '@ngrx/store/testing';
+import { Action } from '@ngrx/store';
 
 describe('AvailableProductEffects', () => {
     let effects: AvailableProductEffects;
-    let actions$: Observable<any>;
+    let actions$: Observable<Action>;
     let availableProductService: jasmine.SpyObj<AvailableProductService>;
 
     beforeEach(() => {

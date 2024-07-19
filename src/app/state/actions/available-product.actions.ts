@@ -20,5 +20,5 @@ export const loadAvailableProductsSuccess = createAction(
 // Action dispatched when there is an error loading the available products.
 export const loadAvailableProductsFailure = createAction(
   '[AvailableProduct] Load Available Products Failure',
-  props<{ error: any }>()
+  props<{ error: unknown }>()
 );

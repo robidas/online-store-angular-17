@@ -1,9 +1,8 @@
 <div *ngIf="product$ | async as product; else errorTemplate">
   <h2> {{product.productName}}</h2>
   <p>{{product.unitPrice | currency}}</p>
-  <img [src]="product.productImageFile">
+  <img [src]="product.productImageFile" alt="product image">
   <p>{{product.productDetails}}</p>
-  <!-- <p> {{product.id}}</p> -->
   <button (click)="addProduct()">add to cart</button> 
 
 </div>

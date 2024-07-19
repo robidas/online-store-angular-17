@@ -15,7 +15,7 @@
  * them to retrieve state information without being directly involved in how that state is updated 
  * or managed. 
  */
-import { selectAvailableProductsState, selectAvailableProductById } from './available-product.selectors';
+import { selectAvailableProductById } from './available-product.selectors';
 import { AvailableProduct } from 'src/app/models/available-product.interface';
 
 // Tests related to AvailableProduct selectors.
