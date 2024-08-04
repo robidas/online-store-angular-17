@@ -18,7 +18,7 @@ import { ProductSummaryComponent } from '../product-summary/product-summary.comp
 @Component({
   selector: 'app-product-list',
   standalone: true, // Enables standalone usage, no NgModule required
-  imports: [CommonModule, ProductSummaryComponent, ProductSummaryComponent],  
+  imports: [CommonModule, ProductSummaryComponent],  
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
