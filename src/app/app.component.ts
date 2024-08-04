@@ -21,7 +21,10 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, MainLayoutComponent, FooterComponent],
+  imports: [
+    HeaderComponent, 
+    MainLayoutComponent, 
+    FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
